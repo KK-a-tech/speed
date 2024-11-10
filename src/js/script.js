@@ -47,7 +47,7 @@ window.onload = () => {
       elm.addEventListener('click', function () {
         if (count !== parseInt(this.id)) return;
         count++;
-        this.style.backgroundColor = "black";
+        this.style.backgroundColor = "Gray";
         if (count === max + 1) {
           clearInterval(timerInterval);
           alert(`ゲーム終了！ 経過時間: ${timeElapsed.toFixed(2)}秒`);
