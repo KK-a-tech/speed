@@ -7,10 +7,13 @@ window.onload = () => {
   let gameStarted = false;
 
   const startButton = document.getElementById("startButton");
+  const resetButton = document.getElementById("resetButton");
   const screen = document.getElementById("screen");
   const timerDisplay = document.getElementById("timer");
+  const messageDisplay = document.getElementById("messageDisplay");
 
   startButton.addEventListener("click", startGame);
+  resetButton.addEventListener("click", resetGame);
 
   for (let i = 1; i <= max; i++) {
     numbers.push(i);
@@ -32,6 +35,7 @@ window.onload = () => {
     gameStarted = true;
 
     startButton.style.display = "none";
+    resetButton.style.display = "none";
 
     timeElapsed = 0;
     timerDisplay.innerText = `タイム: ${timeElapsed.toFixed(2)}秒`;
@@ -47,12 +51,13 @@ window.onload = () => {
       elm.addEventListener('click', function () {
         if (count !== parseInt(this.id)) return;
         count++;
-        this.style.backgroundColor = "Gray";
+        this.style.backgroundColor = "gray";
         if (count === max + 1) {
           clearInterval(timerInterval);
-          alert(`ゲーム終了！ 経過時間: ${timeElapsed.toFixed(2)}秒`);
+          displayGameEndMessage(`ゲーム終了！ 経過時間: ${timeElapsed.toFixed(2)}秒`);
+
           count = 1;
-          startButton.style.display = "inline-block";
+          resetButton.style.display = "inline-block";
         }
       });
 
@@ -65,7 +70,26 @@ window.onload = () => {
   }
 
   function updateTimer() {
-    timeElapsed+= 0.01;
+    timeElapsed += 0.01;
     timerDisplay.innerText = `タイム: ${timeElapsed.toFixed(2)}秒`;
+  }
+
+  function resetGame() {
+    screen.innerHTML = '';
+
+    count = 1;
+    gameStarted = false;
+    timeElapsed = 0;
+    timerDisplay.innerText = `タイム: 0.00秒`;
+
+    startButton.style.display = "inline-block";
+    resetButton.style.display = "none";
+    messageDisplay.innerText = "";
+    messageDisplay.style.visibility = "hidden";
+  }
+
+  function displayGameEndMessage(message) {
+    messageDisplay.innerText = message;
+    messageDisplay.style.visibility = "visible";
   }
 };
