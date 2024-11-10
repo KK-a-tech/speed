@@ -1,0 +1,53 @@
+@charset 'UTF-8';
+
+#screen {
+  margin :32px auto;
+  width: 780px;
+  height: 580px;
+  border: solid 1px #888;
+  background-color: #f0f0f0;
+  user-select: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+.card {
+  width: 180px;
+  height: 180px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.1); /* カードが少し大きくなる */
+}
+
+.card p {
+  font-size: 120px;
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  #screen {
+    width: 100%;
+    height: auto;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card {
+    width: 150px;
+    height: 150px;
+  }
+
+  .card p {
+    font-size: 80px;
+  }
+}
